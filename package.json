@@ -1,0 +1,108 @@
+{
+  "name": "slyce",
+  "version": "1.0.0",
+  "description": "A cross-platform Electron app for taking screenshots and extracting text using OCR (Tesseract.js).",
+  "license": "ISC",
+  "author": {
+    "name": "rsxxh",
+    "email": "rshxx.one@gmail.com"
+  },
+  "homepage": "https://github.com/rsxxh/slyce",
+  "type": "commonjs",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build:mac": "electron-builder --mac",
+    "build:win": "electron-builder --win",
+    "build:linux": "electron-builder --linux",
+    "build:all": "electron-builder --mac --win --linux",
+    "build": "electron-builder --mac --win --linux"
+  },
+  "devDependencies": {
+    "electron": "^36.5.0",
+    "electron-builder": "^26.0.12"
+  },
+  "dependencies": {
+    "canvas": "^3.1.1",
+    "node-key-sender": "^1.0.11",
+    "screenshot-desktop": "^1.15.1",
+    "sharp": "^0.34.2",
+    "tesseract.js": "^6.0.1"
+  },
+  "build": {
+    "appId": "com.example.slyce",
+    "productName": "Slyce",
+    "files": [
+      "**/*",
+      "!node_modules/.bin",
+      "!**/node_modules/*/{test,__tests__}/**"
+    ],
+    "mac": {
+      "target": [
+        {
+          "target": "dmg",
+          "arch": ["x64", "arm64"]
+        }
+      ],
+      "icon": "app-icon.icns",
+      "category": "public.app-category.productivity",
+      "hardenedRuntime": true,
+      "gatekeeperAssess": false,
+      "entitlements": "entitlements.mac.plist",
+      "entitlementsInherit": "entitlements.mac.plist",
+      "identity": null,
+      "notarize": false
+    },
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": ["x64"]
+        }
+      ],
+      "icon": "app-icon.ico",
+      "requestedExecutionLevel": "asInvoker",
+      "artifactName": "${productName}-Setup-${version}.${ext}"
+    },
+    "linux": {
+      "target": [
+        {
+          "target": "AppImage",
+          "arch": ["x64"]
+        },
+        {
+          "target": "deb",
+          "arch": ["x64"]
+        }
+      ],
+      "icon": "app-icon.png",
+      "category": "Utility",
+      "maintainer": "rsxxh <rshxx.one@gmail.com>"
+    },
+    "asarUnpack": [
+      "**/tessdata/**",
+      "**/eng.traineddata",
+      "**/eng.traineddata.gz",
+      "**/node_modules/sharp/**",
+      "**/node_modules/tesseract.js/**"
+    ],
+    "extraResources": [
+      {
+        "from": "eng.traineddata",
+        "to": "tessdata/eng.traineddata"
+      },
+      {
+        "from": "eng.traineddata.gz",
+        "to": "tessdata/eng.traineddata.gz"
+      }
+    ],
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "Slyce"
+    }
+  }
+}
