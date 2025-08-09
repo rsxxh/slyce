@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Slyce Settings</title>
+    <link rel="stylesheet" href="settings.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Settings</h1>
+        </div>
+        
+        <div class="setting-group">
+            <h3>Hotkey</h3>
+            <div class="setting-item">
+                <div class="setting-label">Screenshot & Slyce</div>
+                <div class="setting-control">
+                    <span class="hotkey-display">Ctrl+Shift+O</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="setting-group">
+            <h3>Notifications</h3>
+            <div class="setting-item">
+                <div class="setting-label">Show notification on text extraction</div>
+                <div class="setting-control">
+                    <label class="switch">
+                        <input type="checkbox" id="notificationToggle" checked>
+                        <span class="slider"></span>
+                    </label>
+                </div>
+            </div>
+            <div class="setting-item">
+                <div class="setting-label">Auto-copy text to clipboard</div>
+                <div class="setting-control">
+                    <label class="switch">
+                        <input type="checkbox" id="autoCopyToggle" checked>
+                        <span class="slider"></span>
+                    </label>
+                </div>
+            </div>
+        </div>
+        
+        <div class="actions">
+            <button class="btn btn-primary" onclick="saveSettings()">Save Settings</button>
+            <button class="btn btn-secondary" onclick="resetSettings()">Reset to Default</button>
+        </div>
+        
+        <div class="status" id="status" style="display: none;"></div>
+    </div>
+    <script src="settings.js"></script>
+</body>
+</html> 
